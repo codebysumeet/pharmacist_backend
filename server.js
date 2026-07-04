@@ -4,7 +4,7 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
-
+import path from "path";
 // Import routes
 import prescriptionRoutes from './routes/prescriptionRoutes.js';
 import inventoryRoutes from './routes/inventoryRoutes.js';
@@ -38,6 +38,7 @@ app.use((req, res, next) => {
 app.use('/api/prescriptions', prescriptionRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/bills', billRoutes);
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 // Base route
 app.get('/api/health', (req, res) => {

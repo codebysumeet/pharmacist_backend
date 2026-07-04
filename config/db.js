@@ -110,18 +110,32 @@ export async function connectDB() {
       patientId: { type: String, required: true },
       doctorId: { type: String, required: true },
       prescriptionId: { type: String, required: true, unique: true },
-      medicines: [{
-        name: { type: String, required: true },
-        qty: { type: Number, required: true },
-        price: { type: Number, required: true },
-        total: { type: Number, required: true }
-      }],
+
+      medicines: [
+        {
+          name: { type: String, required: true },
+          qty: { type: Number, required: true },
+          price: { type: Number, required: true },
+          total: { type: Number, required: true },
+        },
+      ],
+
       subtotal: { type: Number, required: true },
       tax: { type: Number, required: true },
       discount: { type: Number, required: true },
       totalPrice: { type: Number, required: true },
+
       aiAnalysis: { type: String },
-      createdAt: { type: String, default: () => new Date().toISOString() }
+
+      pdfUrl: {
+        type: String,
+        default: "",
+      },
+
+      createdAt: {
+        type: String,
+        default: () => new Date().toISOString(),
+      },
     });
     BillModel = mongoose.model('Bill', billSchema);
 
@@ -211,6 +225,21 @@ export const db = {
     }
   },
 
+  async addInventoryItem(itemData) {
+    if (dbType === 'mongodb') {
+      const newItem = new InventoryModel(itemData);
+      return await newItem.save();
+    } else {
+      const inventory = readJSON('inventory');
+      if (inventory.some(i => i.name.toLowerCase() === itemData.name.toLowerCase())) {
+        throw new Error('Item already exists in inventory');
+      }
+      inventory.push(itemData);
+      writeJSON('inventory', inventory);
+      return itemData;
+    }
+  },
+
   // --- PRESCRIPTIONS API ---
   async getPrescriptions() {
     if (dbType === 'mongodb') {
@@ -286,6 +315,27 @@ export const db = {
       }
       writeJSON('bills', bills);
       return newBill;
+    }
+  },
+  async updateBill(prescriptionId, updates) {
+    if (dbType === "mongodb") {
+        return await BillModel.findOneAndUpdate(
+            { prescriptionId },
+            updates,
+            { new: true }
+        );
+    } else {
+        const bills = readJSON("bills");
+        const index = bills.findIndex(
+            b => b.prescriptionId === prescriptionId
+        )
+        if (index === -1) return null;
+        bills[index] = {
+            ...bills[index],
+            ...updates
+        };
+        writeJSON("bills", bills);
+        return bills[index];
     }
   }
 };

@@ -1,5 +1,6 @@
 import express from 'express';
 import { db } from '../config/db.js';
+import { generateBillPdf } from "../utils/generateBillPdf.js";
 
 const router = express.Router();
 
@@ -106,6 +107,15 @@ Total savings calculated: $${discount.toFixed(2)}. Patient responsibility reduce
     };
 
     const savedBill = await db.createBill(billData);
+
+    // Generate PDF and save path
+    try {
+      const pdfUrl = await generateBillPdf(savedBill);
+      savedBill.pdfUrl = pdfUrl;
+      await db.updateBill(savedBill.prescriptionId, { pdfUrl });
+    } catch (pdfError) {
+      console.error("PDF generation failed:", pdfError.message);
+    }
 
     // Emit event that bill is generated (optional, dashboard can fetch or update via socket)
     if (req.io) {

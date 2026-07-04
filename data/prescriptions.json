@@ -1,0 +1,65 @@
+[
+  {
+    "patientId": "P-1094",
+    "patientName": "Alice Miller",
+    "doctorId": "D-4022",
+    "doctorName": "Dr. Robert Chen",
+    "prescriptionId": "RX-88491",
+    "medicines": [
+      {
+        "name": "Amoxicillin 500mg",
+        "qty": 15,
+        "dosage": "1 tab three times daily for 5 days"
+      },
+      {
+        "name": "Paracetamol 500mg",
+        "qty": 10,
+        "dosage": "1 tab every 6 hours as needed for pain"
+      }
+    ],
+    "status": "Prescribed",
+    "createdAt": "2026-07-04T16:37:37.417Z"
+  },
+  {
+    "patientId": "P-1095",
+    "patientName": "Marcus Vance",
+    "doctorId": "D-4025",
+    "doctorName": "Dr. Sarah Jenkins",
+    "prescriptionId": "RX-88492",
+    "medicines": [
+      {
+        "name": "Metformin 850mg",
+        "qty": 60,
+        "dosage": "1 tab twice daily with meals"
+      },
+      {
+        "name": "Atorvastatin 20mg",
+        "qty": 30,
+        "dosage": "1 tab daily at bedtime"
+      }
+    ],
+    "status": "Preparing",
+    "createdAt": "2026-07-04T17:37:37.422Z"
+  },
+  {
+    "patientId": "P-1096",
+    "patientName": "Elena Rostova",
+    "doctorId": "D-4022",
+    "doctorName": "Dr. Robert Chen",
+    "prescriptionId": "RX-88493",
+    "medicines": [
+      {
+        "name": "Ibuprofen 400mg",
+        "qty": 20,
+        "dosage": "1 tab twice daily as needed"
+      },
+      {
+        "name": "Omeprazole 20mg",
+        "qty": 14,
+        "dosage": "1 tab daily before breakfast"
+      }
+    ],
+    "status": "Completed",
+    "createdAt": "2026-07-04T14:37:37.422Z"
+  }
+]

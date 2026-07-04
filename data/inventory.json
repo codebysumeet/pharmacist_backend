@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Amoxicillin 500mg",
+    "stock": 150,
+    "threshold": 50,
+    "price": 12.5,
+    "aiDemand": "High",
+    "aiRecommendation": "High seasonal demand. Keep stock above 80 units."
+  },
+  {
+    "name": "Paracetamol 500mg",
+    "stock": 500,
+    "threshold": 100,
+    "price": 3.2,
+    "aiDemand": "Medium",
+    "aiRecommendation": "Stable demand. Regular stock cycle sufficient."
+  },
+  {
+    "name": "Metformin 850mg",
+    "stock": 35,
+    "threshold": 50,
+    "price": 18,
+    "aiDemand": "High",
+    "aiRecommendation": "Stock critical! Below threshold. Reorder 150 units immediately."
+  },
+  {
+    "name": "Atorvastatin 20mg",
+    "stock": 120,
+    "threshold": 40,
+    "price": 25.4,
+    "aiDemand": "Low",
+    "aiRecommendation": "Slow turnover. Next reorder in 15 days."
+  },
+  {
+    "name": "Ibuprofen 400mg",
+    "stock": 45,
+    "threshold": 60,
+    "price": 5.5,
+    "aiDemand": "High",
+    "aiRecommendation": "Stock low. Winter surge predicted. Restock 200 units."
+  },
+  {
+    "name": "Lisinopril 10mg",
+    "stock": 80,
+    "threshold": 30,
+    "price": 14.2,
+    "aiDemand": "Medium",
+    "aiRecommendation": "Stable demand. Reorder next week."
+  },
+  {
+    "name": "Albuterol Inhaler",
+    "stock": 12,
+    "threshold": 25,
+    "price": 35,
+    "aiDemand": "High",
+    "aiRecommendation": "Stock critical! High asthma alert in region. Reorder 50 units."
+  },
+  {
+    "name": "Omeprazole 20mg",
+    "stock": 200,
+    "threshold": 50,
+    "price": 8.9,
+    "aiDemand": "Medium",
+    "aiRecommendation": "Adequate stock. No immediate actions required."
+  }
+]
