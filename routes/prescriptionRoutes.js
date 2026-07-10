@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // Create new prescription (Simulated doctor prescription)
 router.post('/', async (req, res) => {
   try {
-    const { patientName, doctorName, medicines, patientId, doctorId, prescriptionId } = req.body;
+    const { patientName, doctorName, medicines, patientId, doctorId, prescriptionId, patientAge } = req.body;
 
     if (!patientName || !doctorName || !medicines || !Array.isArray(medicines)) {
       return res.status(400).json({ message: 'Missing required prescription fields' });
@@ -36,6 +36,10 @@ router.post('/', async (req, res) => {
       status: 'Prescribed',
       createdAt: new Date().toISOString()
     };
+
+    if (patientAge !== undefined && patientAge !== null && patientAge !== '') {
+      newRx.patientAge = Number(patientAge);
+    }
 
     const savedRx = await db.createPrescription(newRx);
     
